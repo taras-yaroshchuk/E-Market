@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="11012016-1" author="taras">
+        <comment>
+            Create Product table
+        </comment>
+        <sql>
+            CREATE TABLE public.Product
+            (
+            id SERIAL,
+            name character varying(100),
+            price int NOT NULL,
+            description character varying(255),
+            amount int,
+            CONSTRAINT product_pkey PRIMARY KEY (id)
+            )
+        </sql>
+    </changeSet>
+
+    <changeSet id="11012016-2" author="taras">
+        <comment>
+            Fill Product table with boilerplate data.
+        </comment>
+        <sql>
+            INSERT INTO public.Product (name, price, description, amount) VALUES ('iPhone 5', 400, 'Phone by Apple', 100);
+            INSERT INTO public.Product (name, price, description, amount) VALUES ('Acer Aspire E1-570G', 700, 'Laptop for business', 70);
+            INSERT INTO public.Product (name, price, description, amount) VALUES ('Coffee maker Gaggia Fully - Automatics', 1000, 'Professiaonal Coffee maker', 50);
+            INSERT INTO public.Product (name, price, description, amount) VALUES ('Coffee maker GRAN GAGGIA STYLE', 100, 'Coffee maker for home', 40);
+        </sql>
+
+        <rollback>
+            DELETE FROM public.Product WHERE name = 'iPhone 5';
+            DELETE FROM public.Product WHERE name = 'Acer Aspire E1-570G';
+            DELETE FROM public.Product WHERE name = 'Coffee maker Gaggia Fully - Automatics';
+            DELETE FROM public.Product WHERE name = 'Coffee maker GRAN GAGGIA STYLE';
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
