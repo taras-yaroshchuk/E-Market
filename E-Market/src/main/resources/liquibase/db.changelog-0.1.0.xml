@@ -21,6 +21,9 @@
             CONSTRAINT product_pkey PRIMARY KEY (id)
             )
         </sql>
+        <rollback>
+            DROP TABLE public.Product
+        </rollback>
     </changeSet>
 
     <changeSet id="11012016-2" author="taras">
