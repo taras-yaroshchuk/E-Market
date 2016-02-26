@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="26022016-1" author="taras">
+        <comment>
+            Create Categories table
+        </comment>
+        <sql>
+            CREATE TABLE public.Categories
+            (
+                id   SERIAL,
+                name CHARACTER VARYING(100)
+            )
+        </sql>
+        <rollback>
+            DROP TABLE public.Categories
+        </rollback>
+    </changeSet>
+
+    <changeSet id="26022016-2" author="taras">
+        <comment>
+            Fill Categories table with boilerplate data.
+        </comment>
+        <sql>
+            INSERT INTO public.Categories (name) VALUES ('Phone');
+            INSERT INTO public.Categories (name) VALUES ('Laptop');
+            INSERT INTO public.Categories (name) VALUES ('Coffee Machine');
+        </sql>
+
+        <rollback>
+            DELETE FROM public.Product
+            WHERE name = 'Phone';
+            DELETE FROM public.Product
+            WHERE name = 'Laptop';
+            DELETE FROM public.Product
+            WHERE name = 'Coffee Machine';
+        </rollback>
+    </changeSet>
+
+    <changeSet id="26022016-3" author="taras">
+        <comment>
+            Update Categories table
+        </comment>
+        <sql>
+            ALTER TABLE categories ADD CONSTRAINT categories_pkey PRIMARY KEY (id)
+        </sql>
+
+        <rollback>
+            ALTER TABLE public.categories DROP CONSTRAINT categories_pkey
+        </rollback>
+    </changeSet>
+
+    <changeSet id="26022016-4" author="taras">
+        <comment>
+            Update Product table. Create new colum 'category_id'.
+        </comment>
+        <sql>
+            ALTER TABLE public.product ADD COLUMN category_id INT
+        </sql>
+
+        <rollback>
+            ALTER TABLE public.product DROP COLUMN category_id
+        </rollback>
+    </changeSet>
+
+    <changeSet id="26022016-5" author="taras">
+        <comment>
+            Update Product table. Create new constrain for 'product_fk'.
+        </comment>
+        <sql>
+            ALTER TABLE public.product ADD CONSTRAINT product_fk FOREIGN KEY (category_id) REFERENCES categories (id)
+            MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
+        </sql>
+
+        <rollback>
+            ALTER TABLE public.product DROP CONSTRAINT product_fk
+        </rollback>
+    </changeSet>
+
+
+</databaseChangeLog>
