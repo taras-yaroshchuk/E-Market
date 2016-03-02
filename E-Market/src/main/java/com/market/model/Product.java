@@ -6,6 +6,15 @@ public class Product {
     int price;
     String description;
     int amount;
+    int categoryId;
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
 
     public int getId() {
         return id;

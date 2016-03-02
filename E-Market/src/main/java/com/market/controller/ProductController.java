@@ -29,9 +29,9 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @RequestMapping(value = "/getFirstProd", method = RequestMethod.GET)
-    public @ResponseBody Product getFirstProd() {
-        return productService.getAllProducts().get(0);
+    @RequestMapping(value = "/getProductsOfFirstCategory", method = RequestMethod.GET)
+    public @ResponseBody List<Product> getProductsOfFirstCategory() {
+        return productService.getAllProductsInCategory(3);
     }
 
 }
