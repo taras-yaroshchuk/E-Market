@@ -22,7 +22,7 @@
     </bean>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="/resources/database.properties"/>
+        <property name="location" value="classpath:liquibase.properties"/>
     </bean>
     <!--<context:property-placeholder location="/resources/database.properties" ignore-unresolvable="true" />-->
 
