@@ -1,14 +1,21 @@
 package com.market.controller;
 
+import com.market.service.CategoryService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.inject.Inject;
 
 @Controller
 public class HomeController {
 
-    @RequestMapping({"/","/home"})
-    public String printHomepage() {
+    @Inject
+    CategoryService categoryService;
 
+    @RequestMapping({"/","/home"})
+    public String printHomepage(Model model) {
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "home";
     }
 
