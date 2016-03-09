@@ -12,7 +12,7 @@
 <h1>Home Page</h1>
 <p>Hello, User</p>
 <br/>
-<table id="products_table" border="1">
+<table id="category_table" border="1">
     <thead>
     <tr>
         <th>Name</th>
