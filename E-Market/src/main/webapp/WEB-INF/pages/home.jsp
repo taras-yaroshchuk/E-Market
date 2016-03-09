@@ -1,40 +1,41 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Home Page</title>
-    <!-- use local copies of libraries-->
-    <script src="resources/app/vendor/jquery-2.2.1.js"></script>
-    <script src="resources/app/js/products.js"></script>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-</head>
+<t:layout title="Hello">
+    <jsp:attribute name="head_area">
 
-<body>
-<h1>Home Page</h1>
-<p>Hello, User</p>
-<br/>
-<table id="category_table" border="1">
-    <thead>
-    <tr>
-        <th>Name</th>
-    </tr>
-    <c:forEach items="${categories}" var="category">
+    </jsp:attribute>
+    <jsp:attribute name="body_area">
 
-        <tr>
-            <td><button type="button" value="${category.getName()}" onclick="RestGet(${category.getId()})" /></td>
-        </tr>
-    </c:forEach>
-<table id="products_table" border="1">
-    <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Description</th>
-        <th>Amount</th>
-    </tr>
-    </thead>
-    <tbody id="productsTableBody">
+        <div class="col-sm-4">
+            <p>Choose a category!</p>
+        <table id="category_table" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody id="categoriesTableBody">
 
-    </tbody>
-</table>
-<%--<button type="button" onclick="RestGet(2)">GET</button>--%>
-</body>
-</html>
+            </tbody>
+        </table>
+        </div>
+
+        <div class="col-sm-8">
+        <table id="products_table" class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Amount</th>
+            </tr>
+            </thead>
+            <tbody id="productsTableBody">
+
+            </tbody>
+        </table>
+        </div>
+
+    </jsp:attribute>
+</t:layout>
