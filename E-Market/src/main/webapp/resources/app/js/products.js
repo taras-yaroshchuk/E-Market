@@ -12,6 +12,10 @@ var ProductsController = function () {
      * @param data obtained in response
      */
     function onDataLoaded(data) {
+        displayData(data);
+    }
+
+    function displayData(data) {
         //use '$' prefix when you use jQuery variable - it will be a bit easier to understand
         var $tableBody = $("#productsTableBody");
         $tableBody.empty();
@@ -39,6 +43,53 @@ var ProductsController = function () {
         loadData();
     };
 
+    obj.displayProductsByCategoryId = function (category_id) {
+        $.ajax({
+            type: 'GET',
+            url: '/getProductsByCategoryId/' + category_id,
+            async: true,
+            dataType: 'json',
+            success: function (json) {
+                displayData(json);
+            }
+        })
+    };
+
+    return obj;
+};
+
+
+var CategoriesController = function () {
+    //this will be reference to the controller
+    var obj = {};
+
+    //private functions will look like this:
+    /**
+     * callback for successful call;
+     * @param data obtained in response
+     */
+    function onDataLoaded(data) {
+        var $tableBody = $("#categoriesTableBody");
+        $tableBody.empty();
+
+        data.forEach(function (value) {
+            var $row = $("<tr>");
+            $row.append($("<td>").text(value.name).click(function () {
+                displayProductsByCategoryId(value.id);
+            }));
+            $tableBody.append($row);
+        });
+    }
+
+    function loadData() {
+        $.get("getCategories", onDataLoaded);
+    }
+
+    //public functions will look like this
+    obj.init = function () {
+        loadData();
+    };
+
     return obj;
 };
 
@@ -50,28 +101,11 @@ $(function () {
     WebPage.productsController = ProductsController();
     //call public method
     WebPage.productsController.init();
+
+    WebPage.categoriesController = CategoriesController();
+    WebPage.categoriesController.init();
 });
 
-var RestGet = function (category_id) {
-    $.ajax({
-        type: 'GET',
-        url: '/getProductsByCategoryId/'+category_id,
-        async: true,
-        dataType: 'json',
-        success: function (json) {
-            var $prodTable = $('#products_table');
-            $prodTable.empty();
-            $prodTable.show();
-            var trHTML = '';
-            $.each(json, function (key, value) {
-                trHTML += '<tr><td>' + value.name + '</td><td>' + value.price +
-                    '</td><td>' + value.description + '</td><td>' + value.amount + '</td></tr>';
-            });
-
-            $prodTable.append(trHTML);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert('ERROR!!' + jqXHR.status + ' ' + jqXHR.responseText);
-        }
-    });
+var displayProductsByCategoryId = function (category_id) {
+    WebPage.productsController.displayProductsByCategoryId(category_id);
 };
