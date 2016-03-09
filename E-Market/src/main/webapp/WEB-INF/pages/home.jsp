@@ -10,31 +10,32 @@
 
         <div class="col-sm-4">
             <p>Choose a category!</p>
-        <table id="category_table" class="table table-bordered table-hover">
-            <thead>
-            <tr>
-                <th>Name</th>
-            </tr>
-            </thead>
-            <tbody id="categoriesTableBody">
+            <table id="category_table" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody id="categoriesTableBody">
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
         </div>
 
         <div class="col-sm-8">
-        <table id="products_table" class="table table-bordered">
-            <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Description</th>
-                <th>Amount</th>
-            </tr>
-            </thead>
-            <tbody id="productsTableBody">
+            <table id="products_table" class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                </tr>
+                </thead>
+                <tbody id="productsTableBody">
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
         </div>
 
     </jsp:attribute>

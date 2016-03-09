@@ -5,9 +5,9 @@ import com.market.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -35,9 +35,9 @@ public class ProductController {
         return productService.getAllProductsInCategory(3);
     }
 
-    @RequestMapping(value = "/getProductsByCategoryId/{category_id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getProductsByCategoryId", method = RequestMethod.GET)
     @ResponseBody
-    public List<Product> getProductsBuCategoryId(@PathVariable(value = "category_id") int category_id) {
+    public List<Product> getProductsBuCategoryId(@RequestParam("category_id") int category_id) {
         return productService.getAllProductsInCategory(category_id);
     }
 

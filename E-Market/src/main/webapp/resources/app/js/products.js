@@ -46,7 +46,7 @@ var ProductsController = function () {
     obj.displayProductsByCategoryId = function (category_id) {
         $.ajax({
             type: 'GET',
-            url: '/getProductsByCategoryId/' + category_id,
+            url: '/getProductsByCategoryId?category_id=' + category_id,
             async: true,
             dataType: 'json',
             success: function (json) {
