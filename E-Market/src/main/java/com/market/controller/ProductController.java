@@ -25,8 +25,8 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/getProducts", method = RequestMethod.GET)
-    public @ResponseBody
-    List<Product> getProducts() {
+    @ResponseBody
+    public List<Product> getProducts() {
         return productService.getAllProducts();
     }
 
@@ -36,7 +36,8 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/getProductsByCategoryId/{category_id}", method = RequestMethod.GET)
-    public @ResponseBody List<Product> getProductsBuCategoryId(@PathVariable(value = "category_id") int category_id) {
+    @ResponseBody
+    public List<Product> getProductsBuCategoryId(@PathVariable(value = "category_id") int category_id) {
         return productService.getAllProductsInCategory(category_id);
     }
 
