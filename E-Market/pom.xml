@@ -11,6 +11,8 @@
     <properties>
         <spring.version>4.2.4.RELEASE</spring.version>
         <jackson.version>1.9.10</jackson.version>
+        <jsp.version>2.2</jsp.version>
+        <jstl.version>1.2</jstl.version>
     </properties>
 
     <dependencies>
@@ -61,13 +63,19 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-            <version>1.2</version>
+            <version>${jstl.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.4.1208</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>${jsp.version}</version>
         </dependency>
 
         <dependency>
