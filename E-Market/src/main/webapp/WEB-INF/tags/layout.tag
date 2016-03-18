@@ -32,13 +32,13 @@
             <h1 align="center">Welcome to E-Market!</h1>
         </div>
 
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="/">E-Market</a>
+                    <a class="navbar-brand" href="/E-Market">E-Market</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Home</a></li>
+                    <li class="active"><a href="/E-Market">Home</a></li>
                     <li><a href="#">Page 1</a></li>
                     <li><a href="#">Page 2</a></li>
                     <li><a href="#">Page 3</a></li>
