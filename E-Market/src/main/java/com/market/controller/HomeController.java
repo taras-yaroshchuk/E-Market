@@ -13,7 +13,7 @@ public class HomeController {
     @Inject
     CategoryService categoryService;
 
-    @RequestMapping({"/","/home"})
+    @RequestMapping({"/", "/home", "/E-Market"})
     public String printHomepage(Model model) {
         model.addAttribute("categories", categoryService.getAllCategories());
         return "home";
