@@ -10,6 +10,7 @@
 
     <properties>
         <spring.version>4.2.4.RELEASE</spring.version>
+        <spring.securiry>4.0.4.RELEASE</spring.securiry>
         <jackson.version>1.9.10</jackson.version>
         <jsp.version>2.2</jsp.version>
         <jstl.version>1.2</jstl.version>
@@ -45,6 +46,30 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.securiry}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.securiry}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.securiry}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.securiry}</version>
         </dependency>
 
         <dependency>

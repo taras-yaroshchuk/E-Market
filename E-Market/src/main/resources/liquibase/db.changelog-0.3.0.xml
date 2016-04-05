@@ -40,4 +40,61 @@
             WHERE id = 4;
         </rollback>
     </changeSet>
+
+    <changeSet id="05042016-1" author="taras">
+        <comment>
+            Create User table
+        </comment>
+        <sql>
+            CREATE TABLE public.users (
+                username VARCHAR(45) NOT NULL,
+                password VARCHAR(45) NOT NULL,
+                PRIMARY KEY (username)
+            );
+        </sql>
+
+        <rollback>
+            DROP TABLE public.users;
+        </rollback>
+    </changeSet>
+    <changeSet id="05042016-2" author="taras">
+        <comment>
+            Create user_roles table
+        </comment>
+        <sql>
+            CREATE TABLE public.user_roles (
+            user_role_id SERIAL,
+            username     VARCHAR(45) NOT NULL,
+            role         VARCHAR(45) NOT NULL,
+            CONSTRAINT user_roles_pkey PRIMARY KEY (user_role_id),
+            UNIQUE (role, username),
+            CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username)
+            );
+        </sql>
+
+        <rollback>
+            DROP TABLE public.user_roles;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="05042016-3" author="taras">
+        <comment>
+            Inserts record for testing.
+        </comment>
+        <sql>
+            INSERT INTO users (username, password)
+            VALUES ('test', '1111');
+            INSERT INTO user_roles (username, role)
+            VALUES ('test', 'ROLE_USER');
+        </sql>
+
+        <rollback>
+            DELETE FROM public.user_roles
+            WHERE username = 'test';
+            DELETE FROM public.users
+            WHERE username = 'test';
+        </rollback>
+    </changeSet>
+
+
 </databaseChangeLog>

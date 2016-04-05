@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <!DOCTYPE html>
 <%@tag description="Simple Template" pageEncoding="UTF-8" %>
 
@@ -23,6 +26,18 @@
 
 </head>
 <body>
+<c:url value="/logout" var="logoutUrl" />
+<form action="${logoutUrl}" method="post" id="logoutForm">
+    <input type="hidden" name="${_csrf.parameterName}"
+           value="${_csrf.token}" />
+
+</form>
+<script>
+    function formSubmit() {
+        $("#logoutForm").submit();
+    }
+</script>
+
 <div class="container">
 
     <div class="well">
@@ -44,7 +59,15 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+                    <sec:authorize access="!isAuthenticated()">
+                        <a class="btn btn-lg btn-success" href="<c:url value="/login" />" role="button"><span class="glyphicon glyphicon-log-in"></span>Sign In</a><
+                    </sec:authorize>
+
+                    <sec:authorize access="isAuthenticated()">
+                        Hello, <sec:authentication property="principal.username"/>!
+                        <a class="btn btn-lg btn-danger" href="javascript:formSubmit()" role="button"><span class="glyphicon glyphicon-log-in"></span>Logout</a>
+                    </sec:authorize>
                 </ul>
             </div>
         </nav>
