@@ -63,12 +63,12 @@
         </comment>
         <sql>
             CREATE TABLE public.user_roles (
-            user_role_id SERIAL,
-            username     VARCHAR(45) NOT NULL,
-            role         VARCHAR(45) NOT NULL,
-            CONSTRAINT user_roles_pkey PRIMARY KEY (user_role_id),
-            UNIQUE (role, username),
-            CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username)
+                user_role_id SERIAL,
+                username     VARCHAR(45) NOT NULL,
+                role         VARCHAR(45) NOT NULL,
+                CONSTRAINT user_roles_pkey PRIMARY KEY (user_role_id),
+                UNIQUE (role, username),
+                CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username)
             );
         </sql>
 
@@ -96,5 +96,50 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="13042016-1" author="taras">
+        <comment>
+            Update User table.
+        </comment>
+        <sql>
+            ALTER TABLE users
+                ADD COLUMN email TEXT;
+        </sql>
+
+        <rollback>
+            ALTER TABLE users
+                DROP COLUMN email;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="13042016-2" author="taras">
+        <comment>
+            Update User.password column.
+        </comment>
+        <sql>
+            ALTER TABLE public.users
+                ALTER COLUMN password TYPE VARCHAR(60) USING password :: VARCHAR(60);
+            ALTER TABLE public.users
+                ALTER COLUMN email TYPE VARCHAR(45) USING email :: VARCHAR(45);
+        </sql>
+
+        <rollback>
+            ALTER TABLE public.users
+                ALTER COLUMN password TYPE VARCHAR(45) USING password :: VARCHAR(45);
+            ALTER TABLE public.users ALTER COLUMN email TYPE TEXT USING email::TEXT;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="13042016-3" author="taras">
+        <comment>
+            Update test user.
+        </comment>
+        <sql>
+            UPDATE users SET password='$2a$10$rrf8aRXMDnElplxKwOCv0O16rcrPdDrhbNIZBio.OgqyAhqUYa5ii' WHERE username = 'test';
+        </sql>
+
+        <rollback>
+            UPDATE users SET password='1111' WHERE username = 'test';
+        </rollback>
+    </changeSet>
 
 </databaseChangeLog>

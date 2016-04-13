@@ -58,7 +58,7 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="/registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 
                     <sec:authorize access="!isAuthenticated()">
                         <a class="btn btn-lg btn-success" href="<c:url value="/login" />" role="button"><span class="glyphicon glyphicon-log-in"></span>Sign In</a><

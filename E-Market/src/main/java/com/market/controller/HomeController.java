@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import com.market.model.User;
 
 import javax.inject.Inject;
 
@@ -55,6 +56,12 @@ public class HomeController {
 
         }
         return "403";
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public String registration(Model model) {
+        model.addAttribute(new User());
+        return "registration";
     }
 
     @RequestMapping("/*")

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 public class CategoryDao {
-    private static String SQL_GET_ALL_CATEGORIES = "SELECT id, name FROM categories";
+    private static final String SQL_GET_ALL_CATEGORIES = "SELECT id, name FROM categories";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

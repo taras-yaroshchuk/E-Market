@@ -12,8 +12,8 @@ import java.util.Map;
 
 @Repository
 public class ProductDao {
-    private static String SQL_GET_ALL_PRODUCTS = "select id, name, price, description, amount from product";
-    private static String SQL_GET_PRODUCTS_BY_CATEGORY_ID = "select p.id, p.name, p.price, p.description, p.amount, p.category_id " +
+    private static final String SQL_GET_ALL_PRODUCTS = "select id, name, price, description, amount from product";
+    private static final String SQL_GET_PRODUCTS_BY_CATEGORY_ID = "select p.id, p.name, p.price, p.description, p.amount, p.category_id " +
             "from product p INNER JOIN categories c ON (p.category_id = c.id) WHERE c.id = ?";
 
     @Autowired
@@ -24,7 +24,7 @@ public class ProductDao {
     }
 
     public List<Product> getAllProductsInCategory(int category_id) {
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("category_id", category_id);
         return jdbcTemplate.query(SQL_GET_PRODUCTS_BY_CATEGORY_ID,new Object[] { category_id }, new ProductRowMapper());
     }

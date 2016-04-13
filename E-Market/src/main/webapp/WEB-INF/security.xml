@@ -23,7 +23,7 @@
                 username-parameter="username"
                 password-parameter="password"/>
         <logout invalidate-session="true"
-                logout-success-url="/login?logout" />
+                logout-success-url="/login?logout"/>
 
         <csrf/>
     </http>
@@ -36,6 +36,13 @@
                                        "SELECT username,password, TRUE FROM users WHERE username=?"
                                authorities-by-username-query=
                                        "SELECT username, role FROM user_roles WHERE username =?  "/>
+            <password-encoder ref="encoder" />
         </authentication-provider>
     </authentication-manager>
+
+    <beans:bean id="encoder"
+                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <beans:constructor-arg name="strength" value="11" />
+    </beans:bean>
+
 </beans:beans>
