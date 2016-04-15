@@ -13,6 +13,9 @@ var ProductsController = function () {
      */
     function onDataLoaded(data) {
         displayData(data);
+        $('#products_table').dataTable({
+            "bInfo" : false
+        });
     }
 
     function displayData(data) {
@@ -20,7 +23,7 @@ var ProductsController = function () {
         var $tableBody = $("#productsTableBody");
         $tableBody.empty();
         //use native forEach - it's more fast. Or use Lodash/Underscore - util libs for arrays and objects
-        data.forEach(function (value) {
+        _.forEach(data, function(value) {
             //ints just a bit more convenient way to use jQuery
             var $row = $("<tr>");
             $row.append($("<td>").text(value.name))

@@ -15,15 +15,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>${title}</title>
-    <jsp:invoke fragment="head_area"/>
 
     <!-- use local copies of libraries-->
-    <script src="resources/app/vendor/jquery-2.2.1.js"></script>
+    <script src="resources/app/vendor/js/jquery-2.2.1.js"></script>
     <script src="resources/app/js/products.js"></script>
-    <script src="resources/app/vendor/bootstrap.js"></script>
+    <script src="resources/app/vendor/js/bootstrap.js"></script>
+    <script src="resources/app/vendor/js/lodash.core.js"></script>
 
-    <link rel="stylesheet" href="resources/app/vendor/bootstrap.css"/>
+    <link rel="stylesheet" href="resources/app/vendor/css/bootstrap.css"/>
 
+    <jsp:invoke fragment="head_area"/>
 </head>
 <body>
 <c:url value="/logout" var="logoutUrl" />
@@ -58,14 +59,13 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-
                     <sec:authorize access="!isAuthenticated()">
+                        <li><a href="/registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                         <a class="btn btn-lg btn-success" href="<c:url value="/login" />" role="button"><span class="glyphicon glyphicon-log-in"></span>Sign In</a><
                     </sec:authorize>
 
                     <sec:authorize access="isAuthenticated()">
-                        Hello, <sec:authentication property="principal.username"/>!
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span>Hello, <sec:authentication property="principal.username"/>!</a></li>
                         <a class="btn btn-lg btn-danger" href="javascript:formSubmit()" role="button"><span class="glyphicon glyphicon-log-in"></span>Logout</a>
                     </sec:authorize>
                 </ul>

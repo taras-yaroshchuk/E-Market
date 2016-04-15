@@ -3,8 +3,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <t:layout title="Hello">
-    <jsp:attribute name="head_area">
+	<jsp:attribute name="head_area">
+		<link rel="stylesheet" href="resources/app/vendor/css/datatables.css"/>
 
+        <script src="resources/app/vendor/js/datatables.js"></script>
     </jsp:attribute>
     <jsp:attribute name="body_area">
 
