@@ -12,7 +12,16 @@ public class CategoryService {
     @Autowired
     private CategoryDao categoryDao;
 
+    @Autowired
+    private ProductService productService;
+
     public List<Category> getAllCategories() {
         return categoryDao.getAllCategories();
+    }
+
+    public List<Category> getCategoriesWithProducts() {
+        List<Category> categories = categoryDao.getAllCategories();
+        categories.forEach(category -> category.setProductList(productService.getAllProductsInCategory(category.getId())));
+        return categories;
     }
 }

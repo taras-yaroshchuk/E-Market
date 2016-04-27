@@ -1,8 +1,19 @@
 package com.market.model;
 
+import java.util.List;
+
 public class Category {
     private int id;
     private String name;
+    private List<Product> productList;
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
 
     public int getId() {
         return id;

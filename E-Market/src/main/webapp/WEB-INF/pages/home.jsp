@@ -11,7 +11,7 @@
     <jsp:attribute name="body_area">
 
         <div class="col-sm-4">
-            <p>Choose a category!</p>
+            <p>Choose a category! Or <a href="/download/prices" class="btn btn-info" role="button">download Prices</a></p>
             <table id="category_table" class="table table-bordered table-hover">
                 <thead>
                 <tr>
