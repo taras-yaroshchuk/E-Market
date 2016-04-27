@@ -24,6 +24,8 @@
 
     <link rel="stylesheet" href="resources/app/vendor/css/bootstrap.css"/>
 
+    <link rel="shortcut icon" href="/resources/images/market.png" type="image/png">
+
     <jsp:invoke fragment="head_area"/>
 </head>
 <body>
