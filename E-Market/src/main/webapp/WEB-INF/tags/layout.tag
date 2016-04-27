@@ -17,12 +17,12 @@
     <title>${title}</title>
 
     <!-- use local copies of libraries-->
-    <script src="resources/app/vendor/js/jquery-2.2.1.js"></script>
-    <script src="resources/app/js/products.js"></script>
-    <script src="resources/app/vendor/js/bootstrap.js"></script>
-    <script src="resources/app/vendor/js/lodash.core.js"></script>
+    <script src="/resources/app/vendor/js/jquery-2.2.1.js"></script>
+    <script src="/resources/app/js/products.js"></script>
+    <script src="/resources/app/vendor/js/bootstrap.js"></script>
+    <script src="/resources/app/vendor/js/lodash.core.js"></script>
 
-    <link rel="stylesheet" href="resources/app/vendor/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/resources/app/vendor/css/bootstrap.css"/>
 
     <link rel="shortcut icon" href="/resources/images/market.png" type="image/png">
 
@@ -55,7 +55,14 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/E-Market">Home</a></li>
-                    <li><a href="#">Page 1</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Products
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/products">All products</a></li>
+                            <li><a href="/products/new-product">New product</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#">Page 2</a></li>
                     <li><a href="#">Page 3</a></li>
                 </ul>

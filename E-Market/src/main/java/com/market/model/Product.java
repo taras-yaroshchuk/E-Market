@@ -1,12 +1,12 @@
 package com.market.model;
 
 public class Product {
-    int id;
-    String name;
-    int price;
-    String description;
-    int amount;
-    int categoryId;
+    private int id;
+    private String name;
+    private int price;
+    private String description;
+    private int amount;
+    private int categoryId;
 
     public int getCategoryId() {
         return categoryId;
